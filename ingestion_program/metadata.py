@@ -5,7 +5,7 @@ from enum import Enum
 from typing import List
 
 
-@dataclass(slots=True)
+@dataclass()
 class InputShape:
     """Input shape."""
 
@@ -34,7 +34,7 @@ class EvaluationMetric(Enum):
     BCE = "bce"
 
 
-@dataclass(slots=True)
+@dataclass()
 class AutoMLCupMetadata:
     """Auto ML Cup dataset metadata."""
 

@@ -13,6 +13,7 @@ from metadata import AutoMLCupMetadata, InputShape, OutputType, EvaluationMetric
 from lego import LegoDataloader
 from protein import ProteinDataloader
 from splice import SpliceDataloader
+from pde_diffusion import PDEDiffusionloader
 
 VERBOSITY_LEVEL = "WARNING"
 LOGGER = get_logger(VERBOSITY_LEVEL, __file__)
@@ -22,7 +23,7 @@ class AutoMLCupDataset:
     """AutoMLCupDataset"""
 
     D = TypeVar("D", bound=AutoMLCupDataloader)
-    dataloaders: List[Type[D]] = [ProteinDataloader, LegoDataloader, SpliceDataloader]
+    dataloaders: List[Type[D]] = [ProteinDataloader, LegoDataloader, SpliceDataloader, PDEDiffusionloader]
 
     def __init__(self, directory: Path):
         """init"""
