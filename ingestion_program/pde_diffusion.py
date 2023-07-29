@@ -22,8 +22,8 @@ class PDEDiffusionloader(AutoMLCupDataloader):
                 x_train = np.load(self.directory / "x_train.npz")
                 y_train = np.load(self.directory / "y_train.npz")
                 self.train = {
-                    "input": x_train,
-                    "label": y_train,
+                    "input": x_train.f.arr_0,
+                    "label": y_train.f.arr_0,
                 }
             return self.train
         if split == "test":
@@ -31,8 +31,8 @@ class PDEDiffusionloader(AutoMLCupDataloader):
                 x_test = np.load(self.directory / "x_test.npz")
                 y_test = np.load(self.directory / "y_test.npz")
                 self.test = {
-                    "input": x_test,
-                    "label": y_test,
+                    "input": x_test.f.arr_0,
+                    "label": y_test.f.arr_0,
                 }
             return self.test
 
