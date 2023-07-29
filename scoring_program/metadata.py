@@ -32,6 +32,8 @@ class EvaluationMetric(Enum):
     ACCURACY = "accuracy"
     MAE = "mae"
     BCE = "bce"
+    RMSE = "rmse"
+    F1 = "f1"
 
 
 @dataclass(slots=True)

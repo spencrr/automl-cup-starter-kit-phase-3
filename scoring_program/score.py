@@ -4,9 +4,10 @@ from pathlib import Path
 
 import numpy as np
 from numpy.typing import ArrayLike
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 from torch import Tensor
-from torch.nn.functional import binary_cross_entropy, l1_loss
+from torch.nn.functional import binary_cross_entropy, l1_loss, mse_loss
+import torch
 
 from common import get_logger
 from dataset import AutoMLCupDataset
@@ -59,6 +60,10 @@ def calculate_error(
         ).item()
     if evaluation_metric is EvaluationMetric.MAE:
         return l1_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
+    if evaluation_metric is EvaluationMetric.RMSE:
+        return torch.sqrt(mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")).item()
+    if evaluation_metric is EvaluationMetric.F1:
+        return f1_score(y_test, y_pred)
     raise ValueError(f"EvaluationMetric '{evaluation_metric}' is invalid.")
 
 
