@@ -10,7 +10,7 @@ from dataloader import AutoMLCupDataloader
 class GlobalWheatDataloader(AutoMLCupDataloader):
     @staticmethod
     def name():
-        return "lego"
+        return "globalwheat"
 
     def __init__(self, directory: Path, **kwargs):
         super().__init__(directory, **kwargs)
