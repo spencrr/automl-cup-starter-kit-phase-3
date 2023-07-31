@@ -1,7 +1,9 @@
 from pathlib import Path
+import os
 
-from wilds import get_dataset
-from wilds.common.data_loaders import get_train_loader, get_eval_loader
+
+from tqdm import tqdm
+import numpy as np
 
 from dataloader import AutoMLCupDataloader
 
@@ -17,12 +19,41 @@ class Camelyon17Dataloader(AutoMLCupDataloader):
         self.test = None
     
     def get_split(self, split):
-        dataset = get_dataset(dataset='camelyon17', download=True, root_dir='/home/wilds_data/')
         if split == "train":
-            train_dataset = dataset.get_subset("train")
-            return train_dataset
-            # train_dataloader = get_train_loader("standard", train_dataset, batch_size=batch_size)
+            x_files = np.sort([f_ for f_ in os.listdir(self.directory) if 'x_train' in f_])
+            y_files = np.sort([f_ for f_ in os.listdir(self.directory) if 'y_train' in f_])
+            x = []
+            y = []
+            print("loading camelyon....")
+            for f_x, f_y in tqdm(zip(x_files, y_files)):
+                print(f_x, f_y)
+                x_ = np.load(os.path.join(self.directory, f_x))
+                y_ = np.load(os.path.join(self.directory, f_y))
+                x.append(x_.f.arr_0)
+                y.append(y_.f.arr_0)
+            x = np.concatenate(x, axis=0)
+            y = np.concatenate(y, axis=0)
+            self.train = {
+                "input": x.f.arr_0,
+                "label": y.f.arr_0,
+            }
+            return self.train
         elif split == "test":
-            test_dataset = dataset.get_subset("test")
-            return test_dataset
-            # test_dataloader = get_eval_loader("standard", test_dataset, batch_size=batch_size)
+            x_files = np.sort([f_ for f_ in os.listdir(self.directory) if 'x_test' in f_])
+            y_files = np.sort([f_ for f_ in os.listdir(self.directory) if 'y_test' in f_])
+            x = []
+            y = []
+            print("loading camelyon....")
+            for f_x, f_y in tqdm(zip(x_files, y_files)):
+                print(f_x, f_y)
+                x_ = np.load(os.path.join(self.directory, f_x))
+                y_ = np.load(os.path.join(self.directory, f_y))
+                x.append(x_.f.arr_0)
+                y.append(y_.f.arr_0)
+            x = np.concatenate(x, axis=0)
+            y = np.concatenate(y, axis=0)
+            self.test = {
+                "input": x.f.arr_0,
+                "label": y.f.arr_0,
+            }
+            return self.test
