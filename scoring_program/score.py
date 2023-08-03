@@ -60,6 +60,8 @@ def calculate_error(
         ).item()
     if evaluation_metric is EvaluationMetric.MAE:
         return l1_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
+    if evaluation_metric is EvaluationMetric.MSE:
+        return mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
     if evaluation_metric is EvaluationMetric.RMSE:
         return torch.sqrt(mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")).item()
     if evaluation_metric is EvaluationMetric.F1:

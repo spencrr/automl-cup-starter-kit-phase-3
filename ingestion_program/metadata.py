@@ -34,6 +34,7 @@ class EvaluationMetric(Enum):
     BCE = "bce"
     RMSE = "rmse"
     F1 = "f1"
+    MSE = "mse"
 
 
 @dataclass()

@@ -15,6 +15,7 @@ from protein import ProteinDataloader
 from splice import SpliceDataloader
 from camelyon17 import Camelyon17Dataloader
 from globalwheat import GlobalWheatDataloader
+from pde import PDEDiffusionloader
 
 
 VERBOSITY_LEVEL = "WARNING"
@@ -25,12 +26,12 @@ class AutoMLCupDataset:
     """AutoMLCupDataset"""
 
     D = TypeVar("D", bound=AutoMLCupDataloader)
-    dataloaders: List[Type[D]] = [ProteinDataloader, LegoDataloader, SpliceDataloader, Camelyon17Dataloader, GlobalWheatDataloader]
+    dataloaders: List[Type[D]] = [ProteinDataloader, LegoDataloader, SpliceDataloader, Camelyon17Dataloader, GlobalWheatDataloader, PDEDiffusionloader]
 
     def __init__(self, directory: Path):
         """init"""
         dataset: Optional[AutoMLCupDataloader] = None
-
+        print(directory)
         with open(directory / "info.json", encoding="utf-8") as json_file:
             dataset_info = json.load(json_file)
             dataset_name = dataset_info["name"]
