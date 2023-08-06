@@ -31,6 +31,7 @@ class EvaluationMetric(Enum):
 
     ACCURACY = "accuracy"
     MAE = "mae"
+    MSE = "mse"
     BCE = "bce"
     RMSE = "rmse"
     F1 = "f1"

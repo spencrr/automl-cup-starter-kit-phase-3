@@ -1,7 +1,5 @@
+import numpy as np
 from pathlib import Path
-
-from wilds import get_dataset
-from wilds.common.data_loaders import get_train_loader, get_eval_loader
 
 from dataloader import AutoMLCupDataloader
 
@@ -17,12 +15,21 @@ class Camelyon17Dataloader(AutoMLCupDataloader):
         self.test = None
     
     def get_split(self, split):
-        dataset = get_dataset(dataset='camelyon17', download=True, root_dir='/home/wilds_data/')
         if split == "train":
-            train_dataset = dataset.get_subset("train")
-            return train_dataset
-            # train_dataloader = get_train_loader("standard", train_dataset, batch_size=batch_size)
+            if self.train is None:
+                x_train = np.load(self.directory / "x_train.npz")
+                y_train = np.load(self.directory / "y_train.npz")
+                self.train = {
+                    "input": x_train,
+                    "label": y_train,
+                }
+            return self.train
         elif split == "test":
-            test_dataset = dataset.get_subset("test")
-            return test_dataset
-            # test_dataloader = get_eval_loader("standard", test_dataset, batch_size=batch_size)
+            if self.test is None:
+                x_test = np.load(self.directory / "x_test.npz")
+                y_test = np.load(self.directory / "y_test.npz")
+                self.test = {
+                    "input": x_test,
+                    "label": y_test,
+                }
+            return self.test
