@@ -52,7 +52,9 @@ There is also a Docker image provided that the true competition utilizes located
 
 ## Datasets
 
-Phase 3 TODO
+-   CAMELYON17
+-   Global WHEAT
+-   PDE
 
 ### Metadata
 
@@ -69,7 +71,8 @@ training_limit_sec: int
 
 ### Setup
 
-You can download the datasets [here](https://drive.google.com/file/d/1pbAj9KdaBye6gOeEhfoj5fw2BY3PALC9/view?usp=sharing) and place them in `phase-2/data/`.
+**TODO Download Links**
+You can download the datasets [here](https://drive.google.com/file/d/1pbAj9KdaBye6gOeEhfoj5fw2BY3PALC9/view?usp=sharing) and place them in `phase-3/data/`.
 
 ## Reference
 
