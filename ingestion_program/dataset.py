@@ -10,9 +10,6 @@ from common import get_logger
 from dataloader import AutoMLCupDataloader
 from metadata import AutoMLCupMetadata, InputShape, OutputType, EvaluationMetric
 
-from lego import LegoDataloader
-from protein import ProteinDataloader
-from splice import SpliceDataloader
 from pde import PDEDiffusionloader
 from camelyon17 import Camelyon17Dataloader
 from globalwheat import GlobalWheatDataloader
@@ -25,7 +22,11 @@ class AutoMLCupDataset:
     """AutoMLCupDataset"""
 
     D = TypeVar("D", bound=AutoMLCupDataloader)
-    dataloaders: List[Type[D]] = [ProteinDataloader, LegoDataloader, SpliceDataloader, PDEDiffusionloader, Camelyon17Dataloader, GlobalWheatDataloader]
+    dataloaders: List[Type[D]] = [
+        PDEDiffusionloader,
+        Camelyon17Dataloader,
+        GlobalWheatDataloader,
+    ]
 
     def __init__(self, directory: Path):
         """init"""
