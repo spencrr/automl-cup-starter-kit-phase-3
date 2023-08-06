@@ -63,7 +63,9 @@ def calculate_error(
     if evaluation_metric is EvaluationMetric.MSE:
         return mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
     if evaluation_metric is EvaluationMetric.RMSE:
-        return torch.sqrt(mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")).item()
+        return torch.sqrt(
+            mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")
+        ).item()
     if evaluation_metric is EvaluationMetric.F1:
         return f1_score(y_test, y_pred)
     raise ValueError(f"EvaluationMetric '{evaluation_metric}' is invalid.")

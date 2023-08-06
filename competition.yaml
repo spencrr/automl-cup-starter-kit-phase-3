@@ -1,4 +1,4 @@
-title: "AutoMLCup Phase 3 - PRIVATE TESTING"
+title: "AutoMLCup Phase 3"
 version: 2
 description: AutoML Cup Phase 3
 image: logo.png
@@ -20,27 +20,27 @@ pages:
 # Definition of the tasks
 tasks:
   - index: 0
-    name: Lego
-    description: A 1D synthetic reasoning task
+    name: CAMELYON17
+    description: CAMELYON17
     is_public: false
-    input_data: data/lego/
-    reference_data: data/lego/
+    input_data: data/chamelyon17/
+    reference_data: data/chamelyon17/
     scoring_program: scoring_program
     ingestion_program: ingestion_program
   - index: 1
-    name: Protein
-    description: A 2D Protein Folding task
+    name: Global WHEAT
+    description: Global WHEAT
     is_public: false
-    input_data: data/protein/
-    reference_data: data/protein/
+    input_data: data/globalwheat/
+    reference_data: data/globalwheat/
     scoring_program: scoring_program
     ingestion_program: ingestion_program
   - index: 2
-    name: Splice
-    description: Splice-junction Gene Sequences
+    name: PDE
+    description: PDE
     is_public: false
-    input_data: data/splice/
-    reference_data: data/splice/
+    input_data: data/pde/
+    reference_data: data/pde/
     scoring_program: scoring_program
     ingestion_program: ingestion_program
 
@@ -48,8 +48,8 @@ phases:
   - index: 0
     name: Phase 3
     description: "Diverse 2D tasks"
-    start: 7-15-2023
-    end: 8-10-2023
+    start: 8-05-2023
+    end: 9-01-2023
     tasks:
       - 0
       - 1
