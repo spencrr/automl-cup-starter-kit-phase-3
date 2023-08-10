@@ -28,6 +28,12 @@ def parse_args():
     parser = ArgumentParser()
     parser.add_argument("--prediction_dir", default=default_prediction_dir, type=Path)
     parser.add_argument("--dataset_dir", default=default_data_dir, type=Path)
+    parser.add_argument(
+        "--datasets_root",
+        type=Path,
+        default="/datasets",
+        help="Directory storing the datasets",
+    )
     parser.add_argument("--output_dir", default=default_output_data_dir, type=Path)
 
     args = vars(parser.parse_args())
@@ -83,7 +89,7 @@ def main():
     score_file = output_dir / "scores.json"
 
     LOGGER.info("===== Reading dataset.")
-    dataset = AutoMLCupDataset(args["dataset_dir"])
+    dataset = AutoMLCupDataset(args["dataset_dir"], args["datasets_root"])
 
     LOGGER.info("===== Getting test labels.")
     y_test = dataset.get_split("test")["label"]

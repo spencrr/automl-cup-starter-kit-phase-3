@@ -61,7 +61,13 @@ def _parse_args():
         "--dataset_dir",
         type=Path,
         default=default_dataset_dir,
-        help="Directory storing the dataset (containing " "e.g. adult.data/)",
+        help="Directory storing the dataset metadata",
+    )
+    parser.add_argument(
+        "--datasets_root",
+        type=Path,
+        default="/datasets",
+        help="Directory storing the datasets",
     )
     parser.add_argument(
         "--output_dir",
@@ -157,6 +163,7 @@ def _predict(args, model):
     predict_args = argparse.Namespace(
         **{
             "dataset_dir": args.dataset_dir,
+            "datasets_root": args.datasets_root,
             "model_dir": args.code_dir,
             "output_dir": args.output_dir,
             "temp_dir": args.temp_dir,
@@ -206,7 +213,7 @@ def main():
     LOGGER.info("===== Initialize args.")
     args = _parse_args()
     _init_python_path(args)
-    dataset = AutoMLCupDataset(args.dataset_dir)
+    dataset = AutoMLCupDataset(args.dataset_dir, args.datasets_root)
     LOGGER.info(f"Time budget: {args.time_budget}")
 
     LOGGER.info("===== Set alive_thd")

@@ -20,14 +20,15 @@ zip ../submission.zip *
 
 ## Testing
 
-To run the training and scoring programs locally (e.g., for the `lego` dataset):
+To run the training and scoring programs locally (e.g., for the `pde` dataset):
 
 ```sh
-export DATASET=lego
+export DATASET=pde
 cd ingestion_program
 
 python3 ingestion.py \
    --dataset_dir=../data/$DATASET \
+   --datasets_root=../data/
    --output_dir=../output/ \
    --ingestion_program_dir=../ingestion_program_dir/ \
    --code_dir=../submission/ \
@@ -39,7 +40,7 @@ python3 ingestion.py \
 Note: TODO allow prediction via a validation set created from the training set. For now, you may create your own 'pseudo'-test set.
 
 ```sh
-export DATASET=lego
+export DATASET=pde
 cd scoring_program
 
 python score.py \

@@ -28,7 +28,7 @@ class AutoMLCupDataset:
         GlobalWheatDataloader,
     ]
 
-    def __init__(self, directory: Path):
+    def __init__(self, directory: Path, datasets_root: Path):
         """init"""
         dataset: Optional[AutoMLCupDataloader] = None
 
@@ -52,7 +52,7 @@ class AutoMLCupDataset:
 
         for dataloader in AutoMLCupDataset.dataloaders:
             if dataset_name == dataloader.name():
-                dataset = dataloader(directory)
+                dataset = dataloader(datasets_root / dataset_name)
                 break
 
         if dataset is None:

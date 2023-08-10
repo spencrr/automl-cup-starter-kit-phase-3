@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 from os.path import join
+from pathlib import Path
 from sys import path
 from time import time
 
@@ -27,7 +28,7 @@ def predict(args, umodel):
     """prediction"""
     result = {}
     try:
-        dataset = AutoMLCupDataset(args.dataset_dir)
+        dataset = AutoMLCupDataset(args.dataset_dir, args.datasets_root)
         path.append(args.model_dir)
         LOGGER.info("==== Load user model")
 
@@ -58,6 +59,12 @@ def _parse_args():
         "--dataset_dir",
         type=str,
         help="Directory storing the dataset (containing " "e.g. adult.data/)",
+    )
+    parser.add_argument(
+        "--datasets_root",
+        type=Path,
+        default="/datasets",
+        help="Directory storing the datasets",
     )
     parser.add_argument("--model_dir", type=str, help="Directory storing the model ")
 
