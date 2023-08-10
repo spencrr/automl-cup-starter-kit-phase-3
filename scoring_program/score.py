@@ -73,7 +73,7 @@ def calculate_error(
             mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")
         ).item()
     if evaluation_metric is EvaluationMetric.F1:
-        return f1_score(y_test, y_pred)
+        return 1 - f1_score(y_test, y_pred)
     raise ValueError(f"EvaluationMetric '{evaluation_metric}' is invalid.")
 
 
