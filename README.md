@@ -72,8 +72,10 @@ training_limit_sec: int
 
 ### Setup
 
-**TODO Download Links**
-You can download the datasets [here](https://drive.google.com/file/d/1pbAj9KdaBye6gOeEhfoj5fw2BY3PALC9/view?usp=sharing) and place them in `phase-3/data/`.
+You can download the datasets here and place them in `phase-3/data/<dataset name>`:
+https://drive.google.com/file/d/11UYW_rftUqFgWicc3-mUCzHxjf988glD/view?usp=sharing
+https://drive.google.com/file/d/1Pec_sk4uyxIx-ToO0UhppIB2LUF47vyO/view?usp=sharing
+https://drive.google.com/file/d/1k1S0_El8Ds09E9OQG2MVQN_PrVWkJPWI/view?usp=sharing
 
 ## Reference
 
