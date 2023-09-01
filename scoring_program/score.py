@@ -62,15 +62,15 @@ def calculate_error(
         return 1 - accuracy_score(y_test, y_pred)
     if evaluation_metric is EvaluationMetric.BCE:
         return binary_cross_entropy(
-            Tensor(y_test), Tensor(y_pred), reduction="mean"
+            Tensor(y_pred), Tensor(y_test), reduction="mean"
         ).item()
     if evaluation_metric is EvaluationMetric.MAE:
-        return l1_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
+        return l1_loss(Tensor(y_pred), Tensor(y_test), reduction="mean").item()
     if evaluation_metric is EvaluationMetric.MSE:
-        return mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean").item()
+        return mse_loss(Tensor(y_pred), Tensor(y_test), reduction="mean").item()
     if evaluation_metric is EvaluationMetric.RMSE:
         return torch.sqrt(
-            mse_loss(Tensor(y_test), Tensor(y_pred), reduction="mean")
+            mse_loss(Tensor(y_pred), Tensor(y_test), reduction="mean")
         ).item()
     if evaluation_metric is EvaluationMetric.F1:
         return 1 - f1_score(y_test, y_pred)
